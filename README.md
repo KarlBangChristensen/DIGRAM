@@ -32,7 +32,7 @@ ITA 0 3 5 9 100 999
 
 ### The imv file
 
-The imv file looks like this
+Saved as `C:\Dropbox\GRM\DIGRAM.imv` the imv file looks like this
 
 ```
 a,it22,0,zero,1,one,2,two
@@ -48,3 +48,9 @@ j,over40,0,zero,1,one
 ```
 
 note that variables used in the item analysis are labeled using the letters `a`, `b`, ...
+
+### The ini file
+
+
+
+"C:\Dropbox\COHQ\GRM\DIGRAM.ini"
