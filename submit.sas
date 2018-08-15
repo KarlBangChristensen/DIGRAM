@@ -1,0 +1,24 @@
+%macro submit(path);
+	X "cd &path";
+	X "scd";
+	%macro delfile(exten);
+		data _null_;
+		    fname="tempfile";
+		    rc=filename(fname,"&path\DIGRAM.&exten");
+		    if rc = 0 and fexist(fname) then
+		       rc=fdelete(fname);
+		    rc=filename(fname);
+		run;
+	%mend delfile;
+	%delfile(cat);
+	%delfile(cmd);
+	%delfile(csv);
+	%delfile(dat);
+	%delfile(def);
+	%delfile(imp);
+	%delfile(imv);
+	%delfile(SYS);
+	%delfile(TAB);
+	%delfile(var);
+	options notes;
+%mend;
