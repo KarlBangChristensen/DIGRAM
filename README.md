@@ -19,18 +19,11 @@ ID it22 it23 it24 it25 it26 it27 it28 it29 woman over40
 
 to analyze this data set using DIGRAM we need to create a number of files:
 
-- A command/ini script
-- An imv file
-- a csv file
+- A data file with the data saved in *.csv format
+- A file with information about the variables in the data set saved as a *.imv file
+- A command script. This can be saved as  configuration options (*.ini) or as a or a command script (*.cmd)
 
 
-
-
-
-
-### The ini file
-
-Saved as `C:\Dropbox\GRM\DIGRAM.ini` the ini file looks like the same as the command file
 
 
 
