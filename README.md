@@ -27,22 +27,6 @@ to analyze this data set using DIGRAM we need to create a number of files:
 
 
 
-### The imv file
-
-Saved as `C:\Dropbox\GRM\DIGRAM.imv` the imv file looks like this
-
-```
-a,it22,0,zero,1,one,2,two
-b,it23,0,zero,1,one,2,two
-c,it24,0,zero,1,one,2,two
-d,it25,0,zero,1,one,2,two
-e,it26,0,zero,1,one,2,two
-f,it27,0,zero,1,one,2,two
-g,it28,0,zero,1,one,2,two
-h,it29,0,zero,1,one,2,two
-i,woman,0,zero,1,one
-j,over40,0,zero,1,one
-```
 
 ### The ini file
 
