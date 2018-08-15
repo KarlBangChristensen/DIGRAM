@@ -5,7 +5,7 @@ DIGRAM is a stand alone software package running under windows (*.exe file). Thi
 
 ## Example
 
-To do item analysis using DIGRAM you need to download the file scd.exe and save it somewhere on you computer. We will assume that the file has been saved in the folder `c:\dropbox\GRM`. We consider a data set containing 8 polytomous items (scored 0,1,2) and two binary exogenous variables (person factors):
+To do item analysis using DIGRAM you need to download the file scd.exe and save it somewhere on you computer. We will assume that the file has been saved in the folder `c:\dropbox\GRM`. We consider the data set `SASUSER.example` containing 8 polytomous items (scored 0,1,2) and two binary exogenous variables (person factors):
 
 ```
 it22 it23 it24 it25 it26 it27 it28 it29 woman over40 
@@ -17,7 +17,7 @@ it22 it23 it24 it25 it26 it27 it28 it29 woman over40
 :
 ```
 
-to analyze this data set we need to create a number of files
+to analyze this data set using DIGRAM we need to create a number of files
 
 ### The command script
 
