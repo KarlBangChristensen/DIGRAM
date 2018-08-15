@@ -17,20 +17,14 @@ ID it22 it23 it24 it25 it26 it27 it28 it29 woman over40
 :
 ```
 
-to analyze this data set using DIGRAM we need to create a number of files
+to analyze this data set using DIGRAM we need to create a number of files:
 
-### The command script
+- A command/ini script
+- An imv file
+- a csv file
 
-Saved as `C:\Dropbox\GRM\DIGRAM.cmd` the command file looks like this
 
-```
-ITEMS abcdefgh
-EXO ij
-LLR
-ITA 0 100 999
-```
 
-note that variables used in the item analysis are labeled using the letters `a`, `b`, ... The command script tells DIGRAM the variable names of of the items and of the exogenous variables. The version of the file show above causes DIGRAM to estimate item parameters using CML, but the line `ITA` can be extended to contain command for further analyses. 
 
 
 ### The imv file
