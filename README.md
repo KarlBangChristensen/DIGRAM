@@ -25,7 +25,7 @@ Saved as `C:\Dropbox\GRM\DIGRAM.cmd` the command file looks like this
 
 ```
 ITEMS abcdefgh
-EXO ijk
+EXO ij
 LLR
 ITA 0 3 5 9 100 999
 ```
