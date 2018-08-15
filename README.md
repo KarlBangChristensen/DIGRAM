@@ -23,7 +23,7 @@ to analyze this data set using DIGRAM we need to create a number of files:
 - A file with information about the variables in the data set saved as a [imv file](https://github.com/KarlBangChristensen/DIGRAM/wiki/The-imv-file)
 - A command script. This can be saved as configuration options in an [ini file](https://github.com/KarlBangChristensen/DIGRAM/wiki/The-ini-file) or as a command script in an [cmd file](https://github.com/KarlBangChristensen/DIGRAM/wiki/The-command-script)
 
-
+having created these files DIGRAM can be used to do the analyses specified in the 
 
 
 
