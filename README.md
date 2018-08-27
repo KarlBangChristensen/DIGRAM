@@ -33,7 +33,7 @@ filename DIGR url "&url/DIGR.sas";
 %include DIGR;
 ```
 
-next, the SAS macro is used. We need to specify the dataset, the list of items, the list of exogenous variables, and the location of the file scd.exe `c:\dropbox\GRM`. 
+next, the SAS macro `DIGR.sas` is called. We need to specify the dataset, the list of items, the list of exogenous variables, and the location of the file scd.exe `c:\dropbox\GRM`. 
 
 ```
 %DIGR();
