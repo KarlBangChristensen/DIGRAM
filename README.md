@@ -25,11 +25,17 @@ to analyze this data set using DIGRAM we need to create a number of files:
 
 Having created these files DIGRAM can be used to do the analyses specified in the file `C:\Dropbox\GRM\DIGRAM.ini` or `C:\Dropbox\GRM\DIGRAM.cmd`. 
 
-The files are created like this
+The files are created like this: first the SAS macro `DIGR.sas` is downloaded from GitHub and included
 
 ```
 %let url=https://raw.githubusercontent.com/KarlBangChristensen/DIGRAM/master;
 filename DIGR url "&url/DIGR.sas";
 %include DIGR;
+```
+
+next, the SAS macro is used. We need to specify the dataset, the list of items, the list of exogenous variables, and the location of the file scd.exe `c:\dropbox\GRM`. 
 
 ```
+%DIGR();
+```
+
