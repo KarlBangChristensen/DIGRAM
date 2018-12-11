@@ -154,7 +154,7 @@ numbers2words <- function(x){
   csvdata <- gsub("NA","", csvdata, perl = T)
   csvdata <- paste(csvdata, collapse = delim)
   
-  # writ
+  # write the "homemade" csv file
   destpathcsv <- paste(folder, "/", name, ".csv", sep = "")
   write(csvdata, destpathcsv)
   }
