@@ -1,5 +1,5 @@
 # Author: Pedro Henrique Ribeiro Santiago
-# Description: Creates a plot for Adjusted vs Observed Scores
+# Description: Creates a plot for Observed Scores vs DIF Adjusted Scores
 
 ###Loading required libraries###
 
