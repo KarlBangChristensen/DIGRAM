@@ -44,6 +44,7 @@ ObsAdj
 difobsadj2 = file.choose() #Choose the PersonLocation-comma.txt
 difdata <- read.table(difobsadj2, header = TRUE, sep = "", dec = ",") #Inputs the data into dataframe 
 
+#Creates the plot
 ObsAdj2 <- ggplot(subset(difdata, difdata$S==2&difdata$R==2&difdata$T==2), aes(x=score)) + #Manually select the subgroup
   geom_line(data=subset(difdata, difdata$S==2&difdata$R==2&difdata$T==2), 
            aes(x=score, y=count), colour="orange", show.legend=TRUE) + #Modify color of obs scores
