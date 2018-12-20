@@ -35,6 +35,8 @@ ggplot(subset(iccdata, subgroup), aes(x=Theta, y=score)) +
 
 TCCplot(iccdata$P==1&iccdata$R==1&iccdata$T==1) #Choose subgroup
 
+#NOTE: If there are no subgroups, leave blank between parentheses (e.g. TCCplot())
+
 ### Creating Item Characteristic Curves ###
 
 #Execute function below
@@ -53,5 +55,8 @@ ggplot(subset(iccdata, subgroup), aes(x=Theta, y=D, col=as.factor(type))) + #Cho
 
 #Create plot of ICC for a single group
 
-ICCplot(iccdata$P==1&iccdata$R==1&iccdata$T==1)
+ICCplot(iccdata$P==1&iccdata$R==1&iccdata$T==1) #Choose subgroup
+
+#NOTE: If there are no subgroups, leave blank between parentheses (e.g. TCCplot())
+
 
