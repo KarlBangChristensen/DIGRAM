@@ -1,8 +1,5 @@
-##################################################
-# DIGRAM graphs                                  #
-# Pedro Henrique Ribeiro Santiago                #
-# 12-10-2018                                     #
-##################################################
+# Author: Pedro Henrique Ribeiro Santiago
+# Description: Information Plots
 
 ###Loading libraries###
 
@@ -16,7 +13,7 @@ library(ggplot2) #Load ggplot2 package
 ##########################################################
 
 dbinf = file.choose() #Choose the ItemInf.txt
-infdata <- read.table(dbinf, header = TRUE, sep = "", dec = ",") #Inputs the data into dataframe infdata
+infdata <- read.table(dbinf, header = TRUE, sep = "", dec = ",") #Inputs the data into dataframe 
 
 ### Creating Test Information plots ###
 
@@ -36,10 +33,12 @@ ggplot(subset(infdata, ), aes(x=Theta, y=TestInf, col=subgroup)) +
   geom_point() #Plot test information for all subgroups
 }
 
-TestInfPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups
+TestInfPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups here
 #NOTE: If you are using more or less than 3 groups, please change the 2 first lines of the function
 
 ### Creating Item Information plots ###
+
+#Execute the function below
 
 ItemInfPlotAll <- function(group1, group2, group3) {
   infdata <- cbind(infdata, paste(group1, group2, group3))
@@ -55,10 +54,12 @@ ItemInfPlotAll <- function(group1, group2, group3) {
     geom_point(size=1.0) #Plot item information for all subgroups
 }
 
-ItemInfPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups
+ItemInfPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups here
 #NOTE: If you are using more or less than 3 groups, please change the 2 first lines of the function
 
 ### Creating SEM plots ###
+
+#Execute the function below
 
 SEMPlotAll <- function(group1, group2, group3) {
   infdata <- cbind(infdata, paste(group1, group2, group3))
@@ -74,7 +75,7 @@ SEMPlotAll <- function(group1, group2, group3) {
     geom_point(size=1.0) #Plot SEM for all subgroups
 }
 
-SEMPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups
+SEMPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups here
 #NOTE: If you are using more or less than 3 groups, please change the 2 first lines of the function
 
 #####################################################
@@ -82,6 +83,8 @@ SEMPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups
 #####################################################
 
 ### Creating Test Information plots ###
+
+#Execute the function below
 
 TestInfPlotSub <- function(sub) {
   ggplot(subset(infdata, sub), aes(x=Theta, y=TestInf)) + 
@@ -95,9 +98,11 @@ TestInfPlotSub <- function(sub) {
   geom_point(colour="#F8766D", size=1.5) #Plot test information for a single subgroup
 }
  
-TestInfPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroup
+TestInfPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroup here
 
 ### Creating Item Information plots ###
+
+#Execute the function below
 
 ItemInfPlotSub <- function(sub) {
 ggplot(subset(infdata, sub), aes(x=Theta, y=C)) + #Change the item here
@@ -111,9 +116,11 @@ ggplot(subset(infdata, sub), aes(x=Theta, y=C)) + #Change the item here
   geom_point(colour="#00BFC4", size=1.5) #Plot item information for a single subgroup
 }
 
-ItemInfPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroups
+ItemInfPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroups here
 
 ### Creating SEM plots ###
+
+#Execute the function below
 
 SEMPlotSub <- function(sub) {
 ggplot(subset(infdata, sub), aes(x=Theta, y=sem, col=subgroup)) +  
@@ -130,6 +137,8 @@ ggplot(subset(infdata, sub), aes(x=Theta, y=sem, col=subgroup)) +
 SEMPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroup
 
 ### Creating Test Information + SEM plots ###
+
+#Execute the function below
 
 TestInfSEMPlotSub <- function(sub) {
   ggplot() + 
