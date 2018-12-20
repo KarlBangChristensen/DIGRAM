@@ -1,5 +1,5 @@
 # Author: Pedro Henrique Ribeiro Santiago
-# Description: Creates Item Maps
+# Description: Item Maps
 
 dbmap = file.choose() #Choose the Imap.txt
 imapdata <- read.table(dbmap, header = TRUE, sep = "", dec = ",") #Inputs the data into dataframe
