@@ -1,3 +1,5 @@
+# Author: Pedro Henrique Ribeiro Santiago
+# Description: Creates Categories Probability Curves 
 
 ################################################
 ### Categories Probability Curves - Design 1 ###
@@ -21,7 +23,9 @@ ggplot(data=subset(probdata, sub)) +
   scale_y_continuous(breaks = round(seq(min(0), max(1.1), by = 0.1),1))
 }
 
-CatProbCurves(probdata$P==1&probdata$R==1&probdata$T==1)
+CatProbCurves(probdata$P==1&probdata$R==1&probdata$T==1) #Choose subgroup
+
+#NOTE: If there are no subgroups, leave blank within the parentheses (e.g. CatProbCurves())
 
 ################################################
 ### Categories Probability Curves - Design 2 ###
@@ -46,5 +50,7 @@ CatProbCurves2 <- function(sub) {
   scale_x_continuous(breaks = round(seq(min(probdata$Theta), max(probdata$Theta), by = 1.0),1)) +
   scale_y_continuous(breaks = round(seq(min(0), max(1.3), by = 0.1),1))
 }
-CatProbCurves2(probdata$P==1&probdata$R==1&probdata$T==1)
+CatProbCurves2(probdata$P==1&probdata$R==1&probdata$T==1) #Choose subgroup
+
+#NOTE: If there are no subgroups, leave blank within the parentheses (e.g. CatProbCurves2())
 
