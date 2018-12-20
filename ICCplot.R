@@ -17,8 +17,10 @@ library(ggplot2) #Load ggplot2 package
 dbicc = file.choose() #Choose the ICC.txt
 iccdata <- read.table(dbicc, header = TRUE, sep = "", dec = ",") #Inputs the data into dataframe
 
-#Create plot of TCC for a single group
-plotSubGroupTCC <- ggplot(subset(iccdata, iccdata$P==1&iccdata$R==1&iccdata$T==1), aes(x=Theta, y=score)) + #Choose subgroup manually
+#Execute the function below
+
+TCCplot <- function(subgroup) {
+ggplot(subset(iccdata, subgroup), aes(x=Theta, y=score)) + 
   ggtitle("Test Characteristic Curve") + #Choose title
   theme_light() +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -26,14 +28,19 @@ plotSubGroupTCC <- ggplot(subset(iccdata, iccdata$P==1&iccdata$R==1&iccdata$T==1
   scale_x_continuous(breaks = round(seq(min(iccdata$Theta), max(iccdata$Theta), by = 1.0),1)) + #x-axis 1 logit
   scale_y_continuous(breaks = round(seq(min(0), max(iccdata$score+0.5), by = 1.0),1)) +
   scale_color_brewer(palette = 'Paired') +
-  geom_point(colour="#F8766D", size=1.5) 
+  geom_point(colour="#F8766D", size=1.5)
+}
 
-plotSubGroupTCC #Display plot
+#Create plot of TCC for a single group
+
+TCCplot(iccdata$P==1&iccdata$R==1&iccdata$T==1) #Choose subgroup
 
 ### Creating Item Characteristic Curves ###
 
-#Create plot of ICC for a single group
-plotSubGroupICC <- ggplot(subset(iccdata, iccdata$P==1&iccdata$R==1&iccdata$T==1), aes(x=Theta, y=D, col=as.factor(type))) + #Choose item
+#Execute function below
+
+ICCplot <- function(subgroup) {
+ggplot(subset(iccdata, subgroup), aes(x=Theta, y=D, col=as.factor(type))) + #Choose item
   ggtitle("Item Characteristic Curve") + #Choose title
   theme_light() +
   theme(plot.title = element_text(hjust = 0.5), legend.position="bottom") +
@@ -42,6 +49,9 @@ plotSubGroupICC <- ggplot(subset(iccdata, iccdata$P==1&iccdata$R==1&iccdata$T==1
   scale_y_continuous(breaks = round(seq(min(0), max(iccdata$D), by = 1.0),1)) +
   scale_color_brewer(palette = 'Paired', name="", labels=c("Expected Item Score", "Average Observed Item Score")) +
   geom_point()
-#Plot item D ICC for a single group
-plotSubGroupICC #Display plot
+}
+
+#Create plot of ICC for a single group
+
+ICCplot(iccdata$P==1&iccdata$R==1&iccdata$T==1)
 
