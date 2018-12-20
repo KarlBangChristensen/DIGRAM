@@ -41,6 +41,8 @@ ObsAdjPlot <- function(subgroup) {
 
 ObsAdjPlot(difdata$R==2&difdata$S==2&difdata$T==2)
 
+#NOTE: If there are no subgroups, leave blank between parentheses (e.g. ObsAdjPlot())
+
 #######################################################
 ### Observed Score x Adjusted DIF score - Design 2  ###
 #######################################################
@@ -80,3 +82,5 @@ ObsAdjPlot2 <- function(subgroup) {
 #Now to generate the plot you need only to choose the subgroup
 
 ObsAdjPlot2(difdata$R==2&difdata$S==2&difdata$T==2)
+
+#NOTE: If there are no subgroups, leave blank between parentheses (e.g. ObsAdjPlot2())
