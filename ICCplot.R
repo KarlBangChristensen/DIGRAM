@@ -1,5 +1,5 @@
 # Author: Pedro Henrique Ribeiro Santiago
-# Description: Creates Test Characteristic Curve and Item Characteristic Curve for one subgroup
+# Description: Creates Test Characteristic Curve and Item Characteristic Curve
 
 ###Loading libraries###
 
@@ -8,9 +8,9 @@ library(ggplot2) #Load ggplot2 package
 
 ## FILE = ICC.txt ###
 
-##############################################################
-### Creating Item Characteristic Curves for A SINGLE GROUP ###
-##############################################################
+###########################################
+### Creating Item Characteristic Curves ###
+###########################################
 
 ### Creating Test Characteristic Curves ###
 
