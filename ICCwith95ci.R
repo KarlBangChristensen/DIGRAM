@@ -1,8 +1,5 @@
-##################################################
-# DIGRAM graphs                                  #
-# Pedro Henrique Ribeiro Santiago                #
-# 12-10-2018                                     #
-##################################################
+# Author: Pedro Henrique Ribeiro Santiago
+# Description: Item Characteristic Curve with 95% regions for Expected Scores
 
 ###Loading libraries###
 
