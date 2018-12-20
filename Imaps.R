@@ -1,15 +1,14 @@
-
-
-## FILE = Imaps.txt ###
-
-#####################################
-### Item Maps for A SINGLE GROUP  ###
-#####################################
+# Author: Pedro Henrique Ribeiro Santiago
+# Description: Creates Item Maps
 
 dbmap = file.choose() #Choose the Imap.txt
 imapdata <- read.table(dbmap, header = TRUE, sep = "", dec = ",") #Inputs the data into dataframe
 dbinf = file.choose() #Choose the ItemInf.txt
 infdata <- read.table(dbinf, header = TRUE, sep = "", dec = ",") #Inputs the data into dataframe 
+
+# NOTE: The Imap.txt and ItemInf.txt should display THE SAME SUBGROUPS
+
+# Execute the function below
 
 Imap <- function(sub, sub2) {
   groupmapdata <- subset(imapdata, sub) 
@@ -28,7 +27,7 @@ Imap <- function(sub, sub2) {
     meanbin <<- mean(difvar, na.rm=TRUE)
   } #Adjusts the binwidth so population bars touch each other
   binwidth(as.numeric(rownames(group2))) 
-  ggplot(group2, aes(x=theta)) + #This is the IMAP where WLM estimates are half the size of population bars
+  ggplot(group2, aes(x=theta)) + 
     theme_light() +
     theme(plot.title = element_text(hjust = 0.5), 
           axis.text.y=element_blank(),
@@ -53,4 +52,4 @@ Imap <- function(sub, sub2) {
     geom_segment(aes(x=min(pmin(subset(group2$theta, weight!=0)), subset(group3$theta, weight!=0)-0.3), y=0, xend=max(pmax(group2$theta, group3$theta)+0.5), yend=0), arrow = arrow(length = unit(0.25, "cm"))) 
 }
 
-Imap(imapdata$P==1&imapdata$R==1&imapdata$T==1, infdata$P==1&infdata$R==1&infdata$T==1)
+Imap(imapdata$P==1&imapdata$R==1&imapdata$T==1, infdata$P==1&infdata$R==1&infdata$T==1) #Choose subgroup
