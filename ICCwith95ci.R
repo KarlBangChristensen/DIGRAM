@@ -19,9 +19,10 @@ iccdata <- read.table(dbicc, header = TRUE, sep = "", dec = ",") #Inputs the dat
   confidence[18] <- as.numeric(confidence$ExpVar)
   ggplot(data=subset(confidence, sub), aes(x=Score, y=ObsMean)) +
   theme_light() +
+  ggtitle("Item Characteristic Curve") + #Choose title
   theme(plot.title = element_text(hjust = 0.5), legend.position = "bottom", 
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank()) +
+        panel.background = element_blank(), axis.text.x = element_text(angle = 90, vjust = 1.0, hjust = 1.0)) +
   labs(y = "Item Score", x = "Theta") +
   scale_color_brewer(palette = 'Paired', name="", labels=c("Expected Item Score", "Average Observed Item Score")) +
   geom_point(data=subset(confidence, sub), aes(x=Score, y=ObsMean), colour="black") +
