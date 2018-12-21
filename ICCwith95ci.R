@@ -29,7 +29,7 @@ iccdata <- read.table(dbicc, header = TRUE, sep = "", dec = ",") #Inputs the dat
   geom_line(data=subset(confidence, sub), aes(x=Score, y=ExpMean), colour="black") +
   geom_ribbon(data=subset(confidence, sub), aes(x=Score, 
                         ymin=ExpMean - 1.96*sqrt(ExpVar/n), ymax=ExpMean + 1.96*sqrt(ExpVar/n)), fill="gray", alpha=0.3) +
-scale_x_continuous(breaks = confidence$Score[1:11], 
+scale_x_continuous(breaks = confidence$Score[1:length(subset(iccdata$Theta, iccdata$type=="1"))], 
                    labels=format(round(subset(iccdata$Theta, iccdata$type=="1"), digits=2), nsmall=2)) +
   annotate("text", x = (min(confidence$Score)+min((3*confidence$Score/10))), 
            y = max(confidence$ObsMean[confidence$ItemNo=="2"]+0.1), 
