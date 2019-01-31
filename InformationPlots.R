@@ -1,160 +1,113 @@
-# Author: Pedro Henrique Ribeiro Santiago
-# Description: Information Plots
+##################################################
+# DIGRAM graphs                                  #
+# Pedro Henrique Ribeiro Santiago                #
+# 12-10-2018                                     #
+##################################################
 
-###Loading libraries###
+###########################################
+### STEP 0: Install required R packages ###
+###########################################
 
 install.packages("ggplot2")  #Install ggplot2 package
-library(ggplot2) #Load ggplot2 package
 
-## FILE = ItemInf.txt ###
+###########################################
+### STEP 1: Entering DIGRAM data into R ###
+###########################################
 
-##########################################################
-### Creating Information plots for ALL GROUPS COMBINED ###
-##########################################################
+inf = file.choose() # Execute this command line and choose the ItemInf.txt
+infdata <- read.table(inf, header = TRUE, sep = "", dec = ",")  #Execute this command to input DIGRAM data into R dataframe
 
-dbinf = file.choose() #Choose the ItemInf.txt
-infdata <- read.table(dbinf, header = TRUE, sep = "", dec = ",") #Inputs the data into dataframe 
+####################################
+### STEP 2: Execute the function ###
+####################################
 
-### Creating Test Information plots ###
+# To execute this command, single click on InfPlot and press Control+Enter (or Command+Enter for MAC users) #
 
-#Execute the function below
+InfPlot <- function(groupno="0", group1=c("P","2"), group2=c("R","2"), group3=c("S","2"), group4=c("T","2"), 
+                    item="TestInf", fill="#F8766D", color="#F8766D", title="Test Information",
+                           ytitle="Information", xtitle="Theta", shade="yes", sem="yes", dualaxis="yes", inf="yes",
+                    semcolor="#619CFF", pointsize=1.5, semsize=0.5, ybreaks=0.5) {
+  
+  n1 <- which(colnames(infdata)==group1[1])
+  n2 <- group1[2]
+  n3 <- which(colnames(infdata)==group2[1])
+  n4 <- group2[2]
+  n5 <- which(colnames(infdata)==group3[1])
+  n6 <- group3[2]
+  n7 <- which(colnames(infdata)==group4[1])
+  n8 <- group4[2]
+  
+  if(groupno==0) {
+    infdata=infdata}
+  else if(groupno=="all") {
+    infdata=infdata }
+  else if(groupno==1) {
+    infdata=subset(infdata, infdata[,n1]==n2)}
+  else if (groupno==2) {
+    infdata=subset(infdata, infdata[,n1]==n2&infdata[,n3]==n4)}
+  else if (groupno==3) {
+    infdata=subset(infdata, infdata[,n1]==n2&infdata[,n3]==n4&infdata[,n5]==n6)}
+  else if (groupno==4) {
+    infdata=subset(infdata, infdata[,n1]==n2&infdata[,n3]==n4&infdata[,n5]==n6&infdata[,n7]==n8)}
+  else {infdata=NA}
+  
+  n <- which(colnames(infdata)==item)
+  
+  if(inf=="yes") {color <- color
+    }
+  else {color <- NA
+  fill <- NA}
+  if(sem=="yes"&dualaxis=="yes") {
+    s <- which(colnames(infdata)=="sem")
+    semcol <- semcolor
+    nameaxis <- "SEM"
+    sembreaks <- round(seq(min(0), max(infdata[,n], infdata[,s]), by = ybreaks),1)}
+  else if(sem=="yes"&dualaxis=="no") {
+    s <- which(colnames(infdata)=="sem")
+    semcol <- semcolor
+    nameaxis <- NULL
+    sembreaks <- NULL}
+  else {s <- which(colnames(infdata)==item)
+  semcol <- NA
+  nameaxis <- NULL
+  sembreaks <- NULL
+  }
+  if(shade=="yes") {
+    area<- fill}
+  else {area <- NA}
 
-TestInfPlotAll <- function(group1, group2, group3) {
-infdata <- cbind(infdata, paste(group1, group2, group3))
-colnames(infdata)[ncol(infdata)] <- "subgroup"
-ggplot(subset(infdata, ), aes(x=Theta, y=TestInf, col=subgroup)) + 
-  ggtitle("Test Information") + #Plot title
-  theme_light() + #Choose background theme
-  theme(plot.title = element_text(hjust = 0.5)) + #Align title
-  labs(y = "Information") + #Label y-axis
-  scale_x_continuous(breaks = round(seq(min(infdata$Theta), max(infdata$Theta), by = 1.0),1)) + #Set x-axis ticks
-  scale_y_continuous(breaks = round(seq(min(0), max(infdata$TestInf), by = 0.5),1)) + #Set y-axis ticks
-  scale_color_brewer(palette = 'Paired', name = "Subgroup") + #Choose colors 
-  geom_point() #Plot test information for all subgroups
-}
-
-TestInfPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups here
-#NOTE: If you are using more or less than 3 groups, please change the 2 first lines of the function
-
-### Creating Item Information plots ###
-
-#Execute the function below
-
-ItemInfPlotAll <- function(group1, group2, group3) {
-  infdata <- cbind(infdata, paste(group1, group2, group3))
-  colnames(infdata)[ncol(infdata)] <- "subgroup"
-  ggplot(subset(infdata, ), aes(x=Theta, y=C, col=subgroup)) +  
-    ggtitle("Item Information  ") +
-    theme_light() +
-    theme(plot.title = element_text(hjust = 0.5)) +
-    labs(y = "Information") +
-    scale_x_continuous(breaks = round(seq(min(infdata$Theta), max(infdata$Theta), by = 1.0),1)) + #x-axis 1 logit
-    scale_y_continuous(breaks = round(seq(min(0), max(infdata$TestInf), by = 0.1),1)) +
-    scale_color_brewer(palette = 'Paired',  name = "Subgroup") +
-    geom_point(size=1.0) #Plot item information for all subgroups
-}
-
-ItemInfPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups here
-#NOTE: If you are using more or less than 3 groups, please change the 2 first lines of the function
-
-### Creating SEM plots ###
-
-#Execute the function below
-
-SEMPlotAll <- function(group1, group2, group3) {
-  infdata <- cbind(infdata, paste(group1, group2, group3))
-  colnames(infdata)[ncol(infdata)] <- "subgroup"
-  ggplot(subset(infdata, ), aes(x=Theta, y=sem, col=subgroup)) +  
-    ggtitle("Standard Error of Measurement") +
-    theme_light() +
-    theme(plot.title = element_text(hjust = 0.5)) +
-    labs(y = "SEM") +
-    scale_x_continuous(breaks = round(seq(min(infdata$Theta), max(infdata$Theta), by = 1.0),1)) + 
-    scale_y_continuous(breaks = round(seq(min(0), max(infdata$sem), by = 0.5),1)) +
-    scale_color_brewer(palette = 'Paired', name = "Subgroup") +
-    geom_point(size=1.0) #Plot SEM for all subgroups
-}
-
-SEMPlotAll(infdata$P, infdata$R, infdata$T) #Input the subgroups here
-#NOTE: If you are using more or less than 3 groups, please change the 2 first lines of the function
-
-#####################################################
-### Creating Information plots for A SINGLE GROUP ###
-#####################################################
-
-### Creating Test Information plots ###
-
-#Execute the function below
-
-TestInfPlotSub <- function(sub) {
-  ggplot(subset(infdata, sub), aes(x=Theta, y=TestInf)) + 
-  ggtitle("Test Information") +
+  suppressWarnings(print(ggplot() + 
+  geom_point(data=infdata, aes(x=Theta, y=infdata[,n]), colour=color, size=pointsize) +
+  geom_area(data=infdata, aes(x=Theta, y=infdata[,n]), colour=color, fill=area, alpha=0.3) +
+  geom_point(data=infdata, aes(x=Theta, y=infdata[,s]), colour=semcol, size=semsize) +
+  ggtitle(title) +
   theme_light() +
   theme(plot.title = element_text(hjust = 0.5)) +
-  labs(y = "Information") +
+  labs(y = ytitle, x=xtitle) +
   scale_x_continuous(breaks = round(seq(min(infdata$Theta), max(infdata$Theta), by = 1.0),1)) + #x-axis 1 logit
-  scale_y_continuous(breaks = round(seq(min(0), max(infdata$TestInf), by = 0.5),1)) +
-  geom_area(colour="#F8766D", fill="#F8766D", alpha=0.3) + #This line includes the area under the curve
-  geom_point(colour="#F8766D", size=1.5) #Plot test information for a single subgroup
-}
- 
-TestInfPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroup here
+  scale_y_continuous(sec.axis = sec_axis(~., name=nameaxis, breaks=sembreaks), 
+                     breaks = round(seq(min(0), max(infdata[,n], infdata[,s]), by = ybreaks),1))))}
 
-### Creating Item Information plots ###
+###############################
+### STEP 3: Create the plot ###
+###############################
+  
+InfPlot(groupno="3", group1=c("P","1"), group2=c("R","1"), group3=c("T","2"),
+        item="C", shade="yes", sem="yes", inf="yes", ybreaks=0.5) #Input the subgroup
 
-#Execute the function below
-
-ItemInfPlotSub <- function(sub) {
-ggplot(subset(infdata, sub), aes(x=Theta, y=C)) + #Change the item here
-  ggtitle("Item Information") +
-  theme_light() +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  labs(y = "Information") +
-  scale_x_continuous(breaks = round(seq(min(infdata$Theta), max(infdata$Theta), by = 1.0),1)) + 
-  scale_y_continuous(breaks = round(seq(min(0), max(infdata$TestInf), by = 0.1),1)) +
-  geom_area(colour="#00BFC4", fill="#00BFC4", alpha=0.3) + 
-  geom_point(colour="#00BFC4", size=1.5) #Plot item information for a single subgroup
-}
-
-ItemInfPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroups here
-
-### Creating SEM plots ###
-
-#Execute the function below
-
-SEMPlotSub <- function(sub) {
-ggplot(subset(infdata, sub), aes(x=Theta, y=sem, col=subgroup)) +  
-  ggtitle("Standard Error of Measurement") +
-  theme_light() +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  labs(y = "SEM") +
-  scale_x_continuous(breaks = round(seq(min(infdata$Theta), max(infdata$Theta), by = 1.0),1)) + 
-  scale_y_continuous(breaks = round(seq(min(0), max(infdata$sem), by = 0.5),1)) +
-  geom_area(colour="#00BFC4", fill="#00BFC4", alpha=0.3) +
-  geom_point(colour="#00BFC4", size=1.5) #Plot SEM for a single subgroup
-}
-
-SEMPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroup
-
-### Creating Test Information + SEM plots ###
-
-#Execute the function below
-
-TestInfSEMPlotSub <- function(sub) {
-  ggplot() + 
-  geom_point(data=subset(infdata, sub), aes(x=Theta, y=TestInf), colour="#00BFC4") +
-  geom_point(data=subset(infdata, sub), aes(x=Theta, y=sem), colour="#F8766D") +
-  geom_area(data=subset(infdata, sub), aes(x=Theta, y=TestInf), colour="#00BFC4", fill="#00BFC4", alpha=0.3) +
-  ggtitle("Test Information + Standard Error of Measurement") +
-  theme_light() +
-  theme(plot.title = element_text(hjust = 0.5), legend.position="bottom") +
-  labs(y = "Information") +
-  scale_x_continuous(breaks = round(seq(min(infdata$Theta), max(infdata$Theta), by = 1.0),1)) + #x-axis 1 logit
-  scale_y_continuous(sec.axis = sec_axis(~., name="SEM",
-                                         breaks=c(seq(-10,1,0.5), seq(1.5,4,0.5))),
-                     breaks = c(round(seq(min(0), max(infdata$sem), by = 0.5),1)), name="Information") +
-  scale_color_brewer(palette = 'Paired') +
-  geom_point(size=1.0) #Plot test information and SEM for a single subgroup
-}
-
-TestInfSEMPlotSub(infdata$P==1&infdata$R==1&infdata$T==1) #Input the subgroup
+#groupno: Number of subgroups. If there are no subgroups, choose zero. If you want the graph for all subgroups, choose groupno="all".
+#group1: If there are more than 1 subgroup, define the subgroup name (for example, "P") and subgroup number (for example, "1").
+#item: Define the name of the item (for example, item "C"). If you want the test information, choose item="TestInf".
+#fill: Filling of the area below the information function. To change write fill="mycolorhere". Default is fill="#F8766D".
+#color: Color of the information function. To change the colors write color="mycolor1". Default is color="#F8766D".
+#title: Write title="Mytitle" to chose the plot title. Default is "Test Information".
+#ytitle: Write xtitle="MyYtitle" to chose the y-axis title. Default is "Information".
+#xtitle: Write xtitle="MyXtitle" to chose the x-axis title. Default is "Theta".
+#shade: Shade below the information function. Choose between shade="yes" and shade="no".Default is "yes".
+#sem: Standard Error of Measurement curve. Choose between sem="yes" and sem="no". Default is "yes".
+#dualaxis: Dual axis with SEM. Choose between sem="yes" and sem="no". Default is "yes".
+#inf: Information curve. Choose between sem="yes" and sem="no". Default is "yes".
+#semcolor: Color of the SEM curve. To change the colors write semcolor="mycolor1". Default is semcolor="#619CFF".
+#pointsize: Size of the information curve. To change write pointsize=mynumber. Default is pointsize=0.5.
+#semsize: Size of the SEM curve. To change write semsize=mynumber. Default is semsize=0.5.
+#ybreaks: Change the ticks of the y-label. To change write yticks=mynumber. Default is ybreaks=0.5.
