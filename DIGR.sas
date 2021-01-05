@@ -204,7 +204,7 @@
 	* imv file
 	***********************************;
 	data _imv;
-		VAR='                                                 ';
+		VAR='                                                                                                                                                   ';
 		%do _i=1 %to &_nitems;
 			%let line=&&_&_i..,&&_item&_i..;
 			%do _x=&_gmin %to &_gmax;
